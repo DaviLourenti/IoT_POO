@@ -1,4 +1,4 @@
-from IoT_SuperClass import IoT_Monitor
+from Sistema_IoT_Davi.classes_paternas import IoT_Monitor
 
 
 

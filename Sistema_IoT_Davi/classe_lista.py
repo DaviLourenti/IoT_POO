@@ -1,11 +1,11 @@
-import operaçõesBD
-import IoT_ItensMonitor  
+import Sistema_IoT_Davi.funções_de_dados as funções_de_dados
+import Sistema_IoT_Davi.classes_ItensMonitor as classes_ItensMonitor  
 
 class IoT_Lista:
     def __init__(self, arquivo_csv) -> None:
         self.arquivo_csv = arquivo_csv
-        operaçõesBD.verificar_existencia_arquivo(self.arquivo_csv)
-        self.dados_IoT_lista = operaçõesBD.ler_todas_entradas(self.arquivo_csv)
+        funções_de_dados.verificar_existencia_arquivo(self.arquivo_csv)
+        self.dados_IoT_lista = funções_de_dados.ler_todas_entradas(self.arquivo_csv)
         self.lista_IoT = []
 
         if self.lista_IoT == None:
@@ -24,7 +24,7 @@ class IoT_Lista:
         pass
 
     def salvar_lista(self):
-        operaçõesBD.adicionar_nova_entrada(self.arquivo_csv, self.lista_IoT)
+        funções_de_dados.adicionar_nova_entrada(self.arquivo_csv, self.lista_IoT)
 
     def criar_lista_especializada(self, classe_do_item_padrão) -> None:
         for index in range(0, len(self.lista_IoT)):
@@ -37,10 +37,10 @@ class IoT_Lista:
 for index in range(0, 100):
     l = IoT_Lista('Sistema_IoT_Davi/dados_IoT_lista.csv')
 
-    a1 = IoT_ItensMonitor.CameraMonitor(12.4, 'banheiro', 'ligado', 'camera espiã', 'hahaha')
-    a2 = IoT_ItensMonitor.CameraMonitor(0.0, 'sala', 'deslogado', 'camera espiã', 'offline')
-    b1 = IoT_ItensMonitor.JanelaMonitor(35.1, 'cozinha', 'fechada', 'janena de metal', 'online')
-    b2 = IoT_ItensMonitor.JanelaMonitor(35.1, 'quarto', 'aberta', 'janena de metal', 'offline')
+    a1 = classes_ItensMonitor.CameraMonitor(12.4, 'banheiro', 'ligado', 'camera espiã', 'hahaha')
+    a2 = classes_ItensMonitor.CameraMonitor(0.0, 'sala', 'deslogado', 'camera espiã', 'offline')
+    b1 = classes_ItensMonitor.JanelaMonitor(35.1, 'cozinha', 'fechada', 'janena de metal', 'online')
+    b2 = classes_ItensMonitor.JanelaMonitor(35.1, 'quarto', 'aberta', 'janena de metal', 'offline')
 
     l.add_item_na_lista("index  local: "+str(index+1))
     l.add_item_na_lista(a1)
