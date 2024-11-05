@@ -33,6 +33,17 @@ def ler_primeira_linha(arquivo):
 
 
 def ler_todas_entradas(arquivo):
+    lista_obj_lidos = []
+    with open(arquivo, mode='r') as my_arquivo:
+        obj_leitor = csv.reader(my_arquivo)
+
+        for item_indexado in obj_leitor:
+            lista_obj_lidos += [item_indexado]  # Imprime cada linha do arquivo
+        
+        return lista_obj_lidos
+
+
+def imprimir_todas_entradas(arquivo):
     with open(arquivo, mode='r') as my_arquivo:
         obj_leitor = csv.reader(my_arquivo)
 

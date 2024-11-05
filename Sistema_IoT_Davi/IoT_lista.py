@@ -5,7 +5,8 @@ class IoT_Lista:
     def __init__(self, arquivo_csv) -> None:
         self.arquivo_csv = arquivo_csv
         operaçõesBD.verificar_existencia_arquivo(self.arquivo_csv)
-        self.lista_IoT = operaçõesBD.ler_todas_entradas(self.arquivo_csv)
+        self.dados_IoT_lista = operaçõesBD.ler_todas_entradas(self.arquivo_csv)
+        self.lista_IoT = []
 
         if self.lista_IoT == None:
             self.lista_IoT = []
@@ -32,21 +33,37 @@ class IoT_Lista:
 
 
 
-l = IoT_Lista('Sistema_IoT_Davi\dados_IoT_lista.csv')
 
-# a1 = IoT_ItensMonitor.CameraMonitor(12.4, 'banheiro', 'ligado', 'camera espiã', 'hahaha')
-# a2 = IoT_ItensMonitor.CameraMonitor(0.0, 'sala', 'deslogado', 'camera espiã', 'offline')
-# b1 = IoT_ItensMonitor.JanelaMonitor(35.1, 'cozinha', 'fechada', 'janena de metal', 'online')
-# b2 = IoT_ItensMonitor.JanelaMonitor(35.1, 'quarto', 'aberta', 'janena de metal', 'offline')
+for index in range(0, 100):
+    l = IoT_Lista('Sistema_IoT_Davi/dados_IoT_lista.csv')
 
-# l.add_item_na_lista(a1)
-# l.add_item_na_lista(a2)
-# l.add_item_na_lista(b1)
-# l.add_item_na_lista(b2)
+    a1 = IoT_ItensMonitor.CameraMonitor(12.4, 'banheiro', 'ligado', 'camera espiã', 'hahaha')
+    a2 = IoT_ItensMonitor.CameraMonitor(0.0, 'sala', 'deslogado', 'camera espiã', 'offline')
+    b1 = IoT_ItensMonitor.JanelaMonitor(35.1, 'cozinha', 'fechada', 'janena de metal', 'online')
+    b2 = IoT_ItensMonitor.JanelaMonitor(35.1, 'quarto', 'aberta', 'janena de metal', 'offline')
 
-# l.salvar_lista()
+    l.add_item_na_lista("index  local: "+str(index+1))
+    l.add_item_na_lista(a1)
+    l.add_item_na_lista(a2)
+    l.add_item_na_lista(b1)
+    l.add_item_na_lista(b2)
 
-operaçõesBD.ler_todas_entradas('Sistema_IoT_Davi\dados_IoT_lista.csv')
+    l.salvar_lista()
+
+
+l = IoT_Lista('Sistema_IoT_Davi/dados_IoT_lista.csv')
+print()
+for itens in l.lista_IoT:
+    print(itens)
+
+print("\n\n\n\n\n\n\n\n\n\n\n")
+for itens in l.dados_IoT_lista:
+    print("index global:", l.dados_IoT_lista.index(itens)+1)
+    for item in itens:
+        print(item)
+
+
+#operaçõesBD.ler_todas_entradas('Sistema_IoT_Davi/dados_IoT_lista.csv')
 
 # print("\nlista geral")
 # print(l.lista_IoT[0])
