@@ -1,14 +1,12 @@
-from Sistema_IoT_Davi.classes_paternas import IoT_Monitor
+from classe_IoT_Monitor import IoT_Monitor
 
-
-
-class JanelaMonitor(IoT_Monitor):
+class Janela(IoT_Monitor):
     def __init__(self, consumo: float, local: str, estado: str, tipo: str, conectividade: str):
         super().__init__(consumo, local, estado, tipo, conectividade)
 
 
 
-class PortaMonitor(IoT_Monitor):
+class Porta(IoT_Monitor):
     def __init__(self, consumo: float, local: str, estado: str, tipo: str, conectividade: str, status: str):
         super().__init__(consumo, local, estado, tipo, conectividade)
         self.status = status
@@ -21,7 +19,7 @@ class PortaMonitor(IoT_Monitor):
 
 
 
-class CameraMonitor(IoT_Monitor):
+class Camera(IoT_Monitor):
     def __init__(self, consumo: float, local: str, estado: str, tipo: str, conectividade: str):
         super().__init__(consumo, local, estado, tipo, conectividade)
 

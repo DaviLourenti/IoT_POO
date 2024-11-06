@@ -3,12 +3,10 @@ import os
 
 
 def verificar_existencia_arquivo(arquivo):
-
     if not os.path.exists(arquivo):
         print("O arquivo não foi encontrado; um será criado para subistitui-lo em sua ausencia")
-    
         try:
-            open(arquivo, 'w').close()  # Cria o arquivo se ele não existir
+            open(arquivo, 'w').close()  
             print("sucesso ao criar o arquivo")
         except:
             print("[ERRO] fracasso ao tentar criar o arquivo")
@@ -18,16 +16,16 @@ def verificar_existencia_arquivo(arquivo):
 def adicionar_nova_entrada(arquivo, dados):
     with open(arquivo, mode='a', newline='') as my_arquivo:
         obj_escritor = csv.writer(my_arquivo)
-        obj_escritor.writerow(dados)  # Adiciona uma linha ao arquivo
+        obj_escritor.writerow(dados) 
 
 
 def ler_primeira_linha(arquivo):
     with open(arquivo, mode='r') as my_arquivo:
         obj_leitor = csv.reader(my_arquivo)
-        linha = next(obj_leitor, None)  # Lê a primeira linha
+        linha = next(obj_leitor, None)  
 
         if linha != [] and linha != None:
-            print(linha)  # Imprime a primeira linha
+            print(linha)  
         else:
             print("O arquivo está vazio.")
 
@@ -38,7 +36,7 @@ def ler_todas_entradas(arquivo):
         obj_leitor = csv.reader(my_arquivo)
 
         for item_indexado in obj_leitor:
-            lista_obj_lidos += [item_indexado]  # Imprime cada linha do arquivo
+            lista_obj_lidos += [item_indexado] 
         
         return lista_obj_lidos
 
@@ -48,7 +46,7 @@ def imprimir_todas_entradas(arquivo):
         obj_leitor = csv.reader(my_arquivo)
 
         for item_indexado in obj_leitor:
-            print(item_indexado)  # Imprime cada linha do arquivo
+            print(item_indexado)  
 
 
 def ler_entrada_especifica(arquivo, indice_entrada_especifica=1):
@@ -69,8 +67,8 @@ def ler_entrada_especifica(arquivo, indice_entrada_especifica=1):
 def ler_ultima_entrada(arquivo):
     with open(arquivo, mode='r') as my_arquivo:
         lista_leitor = list(csv.reader(my_arquivo)) 
-        if lista_leitor != []:  # Verifica se a lista não está vazia
-            print(lista_leitor[-1])  # Lê a última linha (última entrada)
+        if lista_leitor != []:
+            print(lista_leitor[-1])  
         else:
             print("O arquivo está vazio. Pois não há nada na ultima entrada")
 
@@ -82,7 +80,7 @@ def ler_entradas_por_intervalo(arquivo, inicio=1, fim=None):
             if fim == None:
                 fim = len(lista_leitor)
 
-            todas_entradas_do_intevalo = lista_leitor[inicio-1:fim]  # Ajustando porque os índices começam em 0
+            todas_entradas_do_intevalo = lista_leitor[inicio-1:fim]  
             for entrada in todas_entradas_do_intevalo:
                 print(entrada)
         else:
@@ -105,18 +103,18 @@ def apagar_linha_especifica(arquivo, numero_linha):
 
 def apagar_ultima_linha(arquivo):
         with open(arquivo, mode='r') as my_arquivo:
-            lista_linhas = list(csv.reader(my_arquivo))  # Converte o conteúdo do arquivo em uma lista
+            lista_linhas = list(csv.reader(my_arquivo)) 
 
         
         with open(arquivo, mode='w', newline='') as my_arquivo:
             obj_escritor = csv.writer(my_arquivo)
-            obj_escritor.writerows(lista_linhas)  # Reescreve o arquivo sem a linha removida
+            obj_escritor.writerows(lista_linhas) 
 
         resposta = input(f"tem certeza? [S-sim/N-não]: {lista_linhas[-1]}")
         if resposta == 'S' or resposta == 's':
             print(f"Linha {lista_linhas[-1]} está sendo removida")
             try:  
-                del lista_linhas[-1]  # Remove a linha (ajuste para índice começando em 0)
+                del lista_linhas[-1]  
                 print("linha removida com sucesso")
             except:
                 print("[ERRO] erro ao tentar apagar a ultima linha")
